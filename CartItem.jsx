@@ -8,7 +8,12 @@ function CartItem() {
   const cartItems = useSelector((state) => state.cart.items);
   const dispatch = useDispatch();
 
-  const totalAmount = cartItems.reduce(
+  const totalItems = cartItems.reduce(
+    (total, item) => total + item.quantity,
+    0
+  );
+
+  const totalCost = cartItems.reduce(
     (total, item) => total + item.price * item.quantity,
     0
   );
@@ -18,24 +23,23 @@ function CartItem() {
       <Navbar />
 
       <div className="cart-container">
-        <h2>Total Cart Amount: ${totalAmount}</h2>
+        <h2>Total Cart Items: {totalItems}</h2>
+        <h2>Total Cost: ${totalCost}</h2>
 
         {cartItems.map((item) => (
           <div className="cart-item" key={item.id}>
-            <div>
-              <img
-                src={item.image}
-                alt={item.name}
-                width="100"
-                height="100"
-              />
-            </div>
+            <img
+              src={item.image}
+              alt={item.name}
+              width="120"
+              height="120"
+            />
 
             <div>
               <h3>{item.name}</h3>
               <p>Unit Price: ${item.price}</p>
-              <p>Total: ${item.price * item.quantity}</p>
               <p>Quantity: {item.quantity}</p>
+              <p>Total Price: ${item.price * item.quantity}</p>
             </div>
 
             <div>
@@ -44,18 +48,22 @@ function CartItem() {
                   dispatch(updateQuantity({ id: item.id, amount: 1 }))
                 }
               >
-                +
+                Increase
               </button>
 
               <button
                 onClick={() =>
                   dispatch(updateQuantity({ id: item.id, amount: -1 }))
                 }
+                style={{ marginLeft: '10px' }}
               >
-                -
+                Decrease
               </button>
 
-              <button onClick={() => dispatch(removeItem(item.id))}>
+              <button
+                onClick={() => dispatch(removeItem(item.id))}
+                style={{ marginLeft: '10px' }}
+              >
                 Delete
               </button>
             </div>
