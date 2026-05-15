@@ -10,10 +10,16 @@ function LandingPage() {
     <div className="landing-page">
       <div className="overlay">
         <h1>Paradise Nursery</h1>
-        <p>Your one-stop shop for beautiful houseplants.</p>
+
+        <p>
+          Discover beautiful indoor plants that bring freshness and happiness
+          to your home.
+        </p>
 
         <Link to="/products">
-          <button className="get-started-btn">Get Started</button>
+          <button className="get-started-btn">
+            Get Started
+          </button>
         </Link>
       </div>
     </div>
