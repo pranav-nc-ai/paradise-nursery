@@ -1,33 +1,29 @@
 import React from 'react';
-    image: 'https://images.unsplash.com/photo-1614594975525-e45190c55d0b'
-  },
-  {
-    id: 3,
-    name: 'Aloe Vera',
-    price: 15,
-    category: 'Succulents',
-    image: 'https://images.unsplash.com/photo-1501004318641-b39e6451bec6'
-  },
-  {
-    id: 4,
-    name: 'Cactus',
-    price: 18,
-    category: 'Succulents',
-    image: 'https://images.unsplash.com/photo-1459411552884-841db9b3cc2a'
-  },
-  {
-    id: 5,
-    name: 'Rose Plant',
-    price: 30,
+    name: 'Lavender',
+    price: 24,
     category: 'Flowering',
-    image: 'https://images.unsplash.com/photo-1490750967868-88aa4486c946'
+    image: 'https://images.unsplash.com/photo-1468327768560-75b778cbb551'
   },
   {
-    id: 6,
-    name: 'Jasmine',
-    price: 28,
+    id: 16,
+    name: 'Orchid',
+    price: 35,
     category: 'Flowering',
-    image: 'https://images.unsplash.com/photo-1466692476868-aef1dfb1e735'
+    image: 'https://images.unsplash.com/photo-1512428559087-560fa5ceab42'
+  },
+  {
+    id: 17,
+    name: 'Hibiscus',
+    price: 26,
+    category: 'Flowering',
+    image: 'https://images.unsplash.com/photo-1502741338009-cac2772e18bc'
+  },
+  {
+    id: 18,
+    name: 'Marigold',
+    price: 20,
+    category: 'Flowering',
+    image: 'https://images.unsplash.com/photo-1470509037663-253afd7f0f51'
   }
 ];
 
@@ -35,7 +31,7 @@ function ProductList() {
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.items);
 
-  const isAdded = (id) => {
+  const isInCart = (id) => {
     return cartItems.some((item) => item.id === id);
   };
 
@@ -66,9 +62,9 @@ function ProductList() {
 
                 <button
                   onClick={() => dispatch(addItem(plant))}
-                  disabled={isAdded(plant.id)}
+                  disabled={isInCart(plant.id)}
                 >
-                  {isAdded(plant.id) ? 'Added' : 'Add to Cart'}
+                  {isInCart(plant.id) ? 'Added to Cart' : 'Add to Cart'}
                 </button>
               </div>
             ))}
